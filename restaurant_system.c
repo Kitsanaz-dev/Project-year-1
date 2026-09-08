@@ -9,12 +9,12 @@ const char *menu_names[] = {"Stewed pork with rice", "Steamed chicken with rice"
 int total = 0;
 
 // Function prototypes
-void processOrder();
-void showTotal();
-void showOrder();
-void menuList();
+void processOrder(int *total, int *quantity, int price, const char *menu_name);
+void showTotal(const int quantities[], const int prices[], int total);
+void showOrder(const int quantities[], const int prices[], const char *menu_names[]);
+void menuList(void);
 
-void main() {
+int main(void) {
 
     int choice = 0;
     int control = 1;
@@ -55,6 +55,8 @@ void main() {
                 break;
         }
     }
+
+    return 0;
 }
 
 void processOrder(int *total, int *quantity, int price, const char *menu_name) {
@@ -72,12 +74,12 @@ void processOrder(int *total, int *quantity, int price, const char *menu_name) {
     printf("\nYou chose %d %s\n", unit, menu_name);
 }
 
-void showTotal(int quantities[], int prices[], int total) {
+void showTotal(const int quantities[], const int prices[], int total) {
     showOrder(quantities, prices, menu_names);
     printf("Total: %d kip\n\n", total);
 }
 
-void showOrder(int quantities[], int prices[], const char *menu_names[]) {
+void showOrder(const int quantities[], const int prices[], const char *menu_names[]) {
     printf("\n===========================\n");
     for (int i = 0; i < 7; i++) {
         if (quantities[i] > 0) {
@@ -87,7 +89,7 @@ void showOrder(int quantities[], int prices[], const char *menu_names[]) {
     printf("===========================\n");
 }
 
-void menuList() {
+void menuList(void) {
     printf("[1] Stewed pork leg with rice \t\t| Price : 35000 kip\n");
     printf("[2] Steamed chicken with rice \t\t| Price : 30000 kip\n");
     printf("[3] Roasted duck with rice    \t\t| Price : 35000 kip\n");
